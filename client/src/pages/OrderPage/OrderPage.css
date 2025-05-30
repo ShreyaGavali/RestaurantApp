@@ -1,0 +1,25 @@
+.order-page {
+    width: 95vw;
+    height: 88vh;
+    background-color: white;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.order-heading {
+    font-size: x-large;
+    padding: 10px;
+    margin: 0px;
+    color: #565656;
+}
+
+.order-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 10px;
+}

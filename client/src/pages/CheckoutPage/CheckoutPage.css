@@ -1,0 +1,335 @@
+.main-checkout-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 99vh;
+    background-color: white;
+}
+
+.checkout-page {
+    /* border: 2px solid black; */
+    width: 320px;
+    height: 100vh;
+}
+
+.checkout-page p{
+    margin: 0px;
+}
+
+.menu-cart-container {
+  max-height: 160px; /* You can adjust this */
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 8px; /* for scrollbar spacing */
+}
+
+.menu-cart{
+    /* border: 2px solid black; */
+    width: 100%;
+    height: 150px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    
+}
+
+.dish-img{
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dish-info{
+    width: 50%;
+}
+
+.dish-img img{
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+    border: 5px solid #d9d9d9;
+}
+
+.dish-name-price-cancel-btn {
+    /* border: 2px solid black; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.quantity{
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.quantity i{
+    border: 2px solid #d9d9d9;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: small;
+    /* text-align: center; */
+}
+
+.dish-price{
+    margin-top: 10px !important;
+    font-size: small;
+}
+
+.dish-name{
+    font-weight: bold;
+}
+
+.cooking-instructions{
+    margin: 10px;
+    margin-top: 20px;
+    font-size: small;
+    color: #8c7b7b;
+    display: inline-block;
+    border-bottom: 1px dotted #8c7b7b;
+    padding-bottom: 2px;
+    cursor: pointer;
+}
+
+.dinein-takeaway-btn{
+    width: 90%;
+    height: 50px;
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 12px;
+    background-color: #e4e4e4;
+    border-radius: 30px;
+}
+
+.dinein-takeaway-btn button{
+    width: 40%;
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+}
+
+.charges{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #faf8da;
+    font-size: small;
+    margin-top: 15px;
+}
+
+.charges p{
+    padding: 5px;
+}
+
+.grand-total , .grand-total-amount{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 5px !important;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    /* left: 0; */
+    width: 320px;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #f0f5f3;
+    width: 88%;
+    max-width: 320px;
+    /* border-top-left-radius: 20px; */
+    /* border-top-right-radius: 20px; */
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-close {
+    background: black;
+    border: none;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+}
+
+.modal-heading {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px !important;
+}
+
+.modal-textarea {
+    width: 100%;
+    height: 50px;
+    border: 3px solid white;
+    border-radius: 10px;
+    /* padding: 5px; */
+    resize: none;
+    background-color: #f0f5f3;
+}
+
+.modal-info {
+    font-size: 12px;
+    color: #6e6e6e;
+    margin-top: 10px !important;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.modal-cancel, .modal-next {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.modal-cancel {
+    background-color: #f0f0f0;
+}
+
+.modal-next {
+    background-color: #333;
+    color: white;
+}
+
+.user-detail-heading{
+    font-weight: bold;
+    padding: 3px;
+}
+
+.add-user-details{
+    color: #8c7b7b;
+    font-size: medium;
+    border-bottom: 1px dotted #8c7b7b;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.modal-input {
+    width: 90%;
+    height: 25px;
+    border: 3px solid white;
+    border-radius: 10px;
+    /* padding: 5px; */
+    resize: none;
+    background-color: #f0f5f3;
+    margin-bottom: 5px;
+}
+
+.user-details-display{
+    width: 100%;
+    /* border: 2px solid black; */
+}
+
+.user-name-number{
+    display: flex;
+    font-size: small;
+    padding: 4px;
+}
+
+.address , .DTime{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: small;
+    margin-bottom: 5px;
+    padding: 4px;
+}
+
+.user-address-DTime i{
+    color: green;
+}
+
+.order-btn{
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    height: 50px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.order-btn i{
+    /* border: 2px solid black; */
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 50%;
+    margin-top: 0px;
+    padding: 5px;
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-btn p{
+    text-align: center;
+    margin-left: 50px !important;
+}
+
+
+.dinein-takeaway-btn button.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.error-text {
+  color: red;
+  /* font-size: 12px; */
+  margin-top: -10px;
+  margin-bottom: 8px;
+}
+
+.error-banner {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+  background: #ffe6e6;
+  padding: 6px 12px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.user-info{
+    /* border: 2px solid black; */
+    height: 110px;
+}

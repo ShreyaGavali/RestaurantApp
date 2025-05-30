@@ -1,0 +1,90 @@
+.order-line-card{
+    /* border: 2px solid black; */
+    width: 225px;
+    height: 325px;
+    background-color: #ffe3bc;
+    padding: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.order-info{
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.order-line-card p{
+    margin: 0px;
+}
+
+.order-id{
+    display: flex;
+    gap: 20px;
+}
+
+.order-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-number , .time{
+    font-size: smaller;
+    padding: 2px;
+}
+
+.table-number{
+    margin-top: 8px !important;
+}
+
+.item-number{
+    font-weight: 500;
+}
+
+.order-type{
+    /* border: 1px solid black; */
+    text-align: center;
+    height: 40px;
+    font-size: small;
+    padding: 7px;
+    background-color: #ffe3bc;
+    border-radius: 15px;
+}
+
+.order-type p{
+    color: black;
+}
+
+.order-item{
+    background-color: white;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    height: 120px;
+}
+
+.order-menue p{
+    margin: 10px;
+    font-size: small;
+}
+
+.order-status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-status-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+    background-color: #fdc474;
+    color: #d87300;
+    width: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bolder;
+    font-size: small;
+}

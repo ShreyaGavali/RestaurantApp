@@ -1,0 +1,24 @@
+.table-container {
+  max-width: 50%;
+  margin: 20px;
+  margin-left: 60px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  background-color: #f5f6f7;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}

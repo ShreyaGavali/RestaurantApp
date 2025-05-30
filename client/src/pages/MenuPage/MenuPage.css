@@ -1,0 +1,125 @@
+.menu-main-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 99vh;
+    background-color: white;
+}
+
+.menu-page {
+    /* border: 2px solid black; */
+    width: 320px;
+    height: 100vh;
+}
+
+.menu-page p {
+    margin: 0px;
+}
+
+.greet {
+    padding: 15px;
+}
+
+.order-text {
+    font-size: smaller;
+}
+
+.search {
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar {
+    /* border: 2px solid black; */
+    width: 85%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background-color: #f0f5f3;
+    border-radius: 10px;
+}
+
+.search-bar input {
+    width: 89%;
+    border: none;
+    background-color: #f0f5f3;
+}
+
+.search-bar input:focus {
+    border: none;
+    outline: none;
+}
+
+.filter-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+.filter-item {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.filter-item p {
+    font-size: 10px;
+    text-align: center;
+    color: gray;
+    margin-top: 3px;
+}
+
+.pizza-img {
+    background-color: black;
+    border-radius: 50%;
+}
+
+.menue-heading {
+    font-size: 25px;
+    padding: 10px;
+    margin-top: 5px !important;
+    font-weight: 500;
+}
+
+.menue-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 450px;
+}
+
+.next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.next-btn button {
+    width: 120px;
+    height: 28px;
+    background-color: #505050;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+}
