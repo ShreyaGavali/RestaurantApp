@@ -33,3 +33,9 @@ Features Implemented
     - Admin Features:
         Add and delete tables.
         View total chefs, total revenue, total clients, and total orders on the dashboard.
+    - Search Feature:
+        On the Analytics page, the admin can search for order summaries, revenue, tables, and chef tables.
+        On the Chair page, the admin can search by table number and chair number.
+        On the Orders page, the admin can search by order type, such as Dine-In, Takeaway, Served, or Done.
+        Users can search for menu items like Pizza, Burger, Cold Drinks, and French Fries.
+
