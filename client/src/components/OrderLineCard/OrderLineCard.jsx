@@ -10,6 +10,7 @@ const OrderLineCard = ({ order, orderNumber }) => {
   console.log(order.status);
   const [remainingTime, setRemainingTime] = useState(20); // default 20 mins countdown
   const [hasUpdatedStatus, setHasUpdatedStatus] = useState(false); // to avoid multiple updates
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +28,7 @@ const OrderLineCard = ({ order, orderNumber }) => {
         console.log(order._id);
 
         // Call backend API to update status
-        axios.put(`http://localhost:5000/api/orders/status/${order._id}`, { status: newStatus })
+        axios.put(`${backendUrl}/api/orders/status/${order._id}`, { status: newStatus })
           .then(response => {
             setStatus(newStatus);
             setHasUpdatedStatus(true);

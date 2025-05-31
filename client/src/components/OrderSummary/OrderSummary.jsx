@@ -18,33 +18,12 @@ const OrderSummary = () => {
   const [total, setTotal] = useState(0);
 
   const [filter, setFilter] = useState("daily");
-
-  // useEffect(() => {
-  //   const fetchOrderStats = async () => {
-  //     try {
-  //       const res = await axios.get("http://localhost:5000/api/orders/orderstatus");
-  //       const { takeAway, served, dineIn } = res.data;
-
-  //       const updatedData = [
-  //         { name: "Take Away", value: takeAway, color: "#333333" },
-  //         { name: "Served", value: served, color: "#888888" },
-  //         { name: "Dine In", value: dineIn, color: "#BBBBBB" },
-  //       ];
-
-  //       setOrderData(updatedData);
-  //       setTotal(takeAway + served + dineIn);
-  //     } catch (error) {
-  //       console.error("Error fetching order stats:", error);
-  //     }
-  //   };
-
-  //   fetchOrderStats();
-  // }, []);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
   const fetchOrderStats = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/orders/orderstatus?filter=${filter}`);
+      const res = await axios.get(`${backendUrl}/api/orders/orderstatus?filter=${filter}`);
       const { takeAway, served, dineIn } = res.data;
 
       const updatedData = [

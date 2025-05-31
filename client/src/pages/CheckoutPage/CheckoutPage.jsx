@@ -8,8 +8,6 @@ import { useSwipeable } from 'react-swipeable';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const CheckoutPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [userModal, setUserModal] = useState(false);
@@ -23,24 +21,24 @@ const CheckoutPage = () => {
     const [errors, setErrors] = useState({});
     const [userInfoError, setUserInfoError] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 
     const validateUserDetails = () => {
-    const newErrors = {};
-    if (!name.trim()) newErrors.name = "Name is required";
-    if (!phoneNumber.trim()) {
-        newErrors.phoneNumber = "Phone number is required";
-    } else if (!/^\d{10}$/.test(phoneNumber)) {
-        newErrors.phoneNumber = "Enter a valid 10-digit number";
-    }
-    if (orderType === "Take Away" && !address.trim()) {
-        newErrors.address = "Address is required for Take Away";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-};
-
-
+        const newErrors = {};
+        if (!name.trim()) newErrors.name = "Name is required";
+        if (!phoneNumber.trim()) {
+            newErrors.phoneNumber = "Phone number is required";
+        } else if (!/^\d{10}$/.test(phoneNumber)) {
+            newErrors.phoneNumber = "Enter a valid 10-digit number";
+        }
+        if (orderType === "Take Away" && !address.trim()) {
+            newErrors.address = "Address is required for Take Away";
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const [quantities, setQuantities] = useState(
         selectedItems.reduce((acc, item) => {
@@ -74,15 +72,16 @@ const CheckoutPage = () => {
 
     const handleOrder = async () => {
         if (!orderType) {
-        setErrors({ orderType: "Please select Dine In or Take Away." });
-        return;
+            setErrors({ orderType: "Please select Dine In or Take Away." });
+            return;
         }
         const isValid = validateUserDetails();
         if (!isValid) {
-        setUserInfoError("Please add your info to continue");
-        return;
+            setUserInfoError("Please add your info to continue");
+            return;
         }
-     setUserInfoError("");
+        setUserInfoError("");
+        setLoading(true);
         const orderPayload = {
             orderType,
             items: updatedItems.map(item => ({
@@ -100,26 +99,28 @@ const CheckoutPage = () => {
         console.log(orderPayload)
 
         try {
-            const response = await axios.post('http://localhost:5000/api/orders/', orderPayload); // Change to your backend URL
+            const response = await axios.post(`${backendUrl}/api/orders/`, orderPayload); // Change to your backend URL
             console.log("Order placed successfully:", response.data);
-             toast.success("Order placed successfully!", {
-            position: "top-center",
-            autoClose: 2000,
-        });
+            toast.success("Order placed successfully!", {
+                position: "top-center",
+                autoClose: 2000,
+            });
 
-        setTimeout(() => {
-            navigate("/menu"); // Replace with actual menu page route
-        }, 2500);
+            setTimeout(() => {
+                navigate("/menu"); // Replace with actual menu page route
+            }, 2500);
         } catch (err) {
             console.error("Failed to place order:", err.response?.data || err.message);
+        } finally {
+            setLoading(false); // hide spinner and enable button
         }
     };
 
     const handlers = useSwipeable({
-  onSwipedRight: handleOrder,
-  preventDefaultTouchmoveEvent: true,
-  trackMouse: true, // for desktop swipe
-});
+        onSwipedRight: handleOrder,
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: true, // for desktop swipe
+    });
 
 
     return (
@@ -227,15 +228,15 @@ const CheckoutPage = () => {
                         </div>
                     ) : (
                         <>
-                        <p className='add-user-details' onClick={() => setUserModal(true)}>
-                            Please add your details to place order
-                        </p>
-                        {userInfoError &&
-                        <div style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px"}}>
-                            <i class="fa-solid fa-circle-exclamation" style={{color: "red"}}></i>
-                            <p className="error-banner">{userInfoError}</p>
-                        </div>
-                        }
+                            <p className='add-user-details' onClick={() => setUserModal(true)}>
+                                Please add your details to place order
+                            </p>
+                            {userInfoError &&
+                                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px" }}>
+                                    <i class="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
+                                    <p className="error-banner">{userInfoError}</p>
+                                </div>
+                            }
                         </>
                     )}
 
@@ -247,28 +248,28 @@ const CheckoutPage = () => {
                             <p className="modal-heading">Add details</p>
                             <input type="text" placeholder='Name' className="modal-input" value={name} onChange={(e) => setName(e.target.value)} />
                             {errors.name &&
-                            <div style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px"}}>
-                            <i class="fa-solid fa-circle-exclamation" style={{color: "red"}}></i>
-                            <p className="error-banner">{errors.name}</p>
-                            
-                        </div>
+                                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px" }}>
+                                    <i class="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
+                                    <p className="error-banner">{errors.name}</p>
+
+                                </div>
                             }
                             <input type="text" placeholder='Phone number' className="modal-input" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                             {errors.phoneNumber &&
-                            <div style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px"}}>
-                            <i class="fa-solid fa-circle-exclamation" style={{color: "red"}}></i>
-                            <p className="error-banner">{errors.phoneNumber}</p>
-                        </div>
+                                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px" }}>
+                                    <i class="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
+                                    <p className="error-banner">{errors.phoneNumber}</p>
+                                </div>
                             }
                             {orderType === "Take Away" && (
                                 <>
-                                <input type="text" placeholder='Address' className="modal-input" value={address} onChange={(e) => setAddress(e.target.value)} />
-                                {errors.address &&
-                                <div style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px"}}>
-                            <i class="fa-solid fa-circle-exclamation" style={{color: "red"}}></i>
-                            <p className="error-banner">{errors.address}</p>
-                        </div>
-                            }
+                                    <input type="text" placeholder='Address' className="modal-input" value={address} onChange={(e) => setAddress(e.target.value)} />
+                                    {errors.address &&
+                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px" }}>
+                                            <i class="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
+                                            <p className="error-banner">{errors.address}</p>
+                                        </div>
+                                    }
                                 </>
                             )}
                             <div className="modal-buttons">
@@ -278,9 +279,23 @@ const CheckoutPage = () => {
                         </div>
                     </div>
                 )}
-                <div className="order-btn" onClick={handleOrder} {...handlers}>
+                {/* <div className="order-btn" onClick={handleOrder} {...handlers}>
                     <i className="fa-solid fa-arrow-right"></i>
                     <p>Swipe to Order</p>
+                </div> */}
+                <div
+                    className={`order-btn ${loading ? 'disabled' : ''}`}
+                    onClick={!loading ? handleOrder : null}
+                    {...handlers}
+                >
+                    {loading ? (
+                        <div className="spinner"></div>
+                    ) : (
+                        <>
+                            <i className="fa-solid fa-arrow-right"></i>
+                            <p>Swipe to Order</p>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

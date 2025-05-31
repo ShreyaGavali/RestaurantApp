@@ -6,10 +6,11 @@ import { useEffect } from 'react';
 
 const ChefTable = () => {
     const [chefs, setChefs] = useState([]);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     useEffect(() => {
         const fetchChefs = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/chefs/'); // use full URL if needed
+                const res = await axios.get(`${backendUrl}/api/chefs/`); // use full URL if needed
                 setChefs(res.data);
             } catch (error) {
                 console.error("Error fetching chefs:", error);

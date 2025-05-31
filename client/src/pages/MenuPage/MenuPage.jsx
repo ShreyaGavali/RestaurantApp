@@ -19,15 +19,20 @@ const MainPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedItems, setSelectedItems] = useState({});
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [loading, setLoading] = useState(false);
 
   const fetchMenuItems = async (category) => {
+     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/menu/filter', { category });
+      const res = await axios.post(`${backendUrl}/api/menu/filter`, { category });
       setMenuItems(res.data);
       console.log(res.data)
     } catch (error) {
       console.error('Error fetching menu items:', error);
-    }
+    } finally {
+    setLoading(false);
+  }
   };
 
   useEffect(() => {
@@ -40,15 +45,18 @@ const MainPage = () => {
 
   const handleSearch = async () => {
     if (!searchTerm.trim()) return;
+     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/menu/filter', {
+      const res = await axios.post(`${backendUrl}/api/menu/filter`, {
         category: searchTerm.trim()
       });
       setMenuItems(res.data);
       setSelectedCategory(searchTerm); // update heading
     } catch (error) {
       console.error('Search error:', error);
-    }
+    } finally {
+    setLoading(false);
+  }
   };
 
   const handleKeyDown = (e) => {
@@ -106,6 +114,12 @@ const MainPage = () => {
             <p>Veggies</p>
           </div>
         </div>
+        {loading ? (
+    <div className="loading-spinner" style={{height: "450px"}}>
+      <div className="spinner"></div>
+      <p>Data is fetching from server...</p>
+    </div>
+  ) : (
         <div className="menue-items">
           <p className="menue-heading">{selectedCategory}</p>
           <div className="menue-item">
@@ -118,6 +132,7 @@ const MainPage = () => {
             )}
           </div>
         </div>
+  )}
           <div className="next-btn">
             <button onClick={goToCheckout}>Next</button>
           </div>

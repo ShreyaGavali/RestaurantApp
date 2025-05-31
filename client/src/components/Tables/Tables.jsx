@@ -4,11 +4,12 @@ import axios from 'axios';
 
 const Tables = () => {
   const [tables, setTables] = useState([]);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchTables = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/tables/'); // Adjust if deployed
+        const res = await axios.get(`${backendUrl}/api/tables/`); // Adjust if deployed
         setTables(res.data);
         console.log(tables);
       } catch (error) {

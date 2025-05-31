@@ -1,6 +1,6 @@
 Demo Credentials
     - Create a .env file in the client folder and paste the following line:
-        BACKEND_URL=
+        VITE_BACKEND_URL=https://restaurantapp-qbs3.onrender.com
 
     - Create a .env file in the server folder and paste the following line:
         MONGO_URI=mongodb+srv://shreyagavali32:F9m9A2UbzL2MFm7B@cluster0.tvkzdbi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

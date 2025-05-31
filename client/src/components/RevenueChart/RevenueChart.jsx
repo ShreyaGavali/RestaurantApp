@@ -17,9 +17,10 @@ import { useEffect } from "react";
 const RevenueChart = () => {
   const [chartType, setChartType] = useState("Daily");
   const [data, setData] = useState([]);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const fetchRevenue = async () => {
-      const res = await axios.get("http://localhost:5000/api/orders/revenuedailyweekly");
+      const res = await axios.get(`${backendUrl}/api/orders/revenuedailyweekly`);
       if (chartType === "Daily") {
         const dailyData = Object.entries(res.data.daily).map(([date, revenue]) => ({
           day: date,
