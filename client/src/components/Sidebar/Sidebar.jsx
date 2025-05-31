@@ -3,7 +3,7 @@ import './Sidebar.css';
 import dashboardimage from '../../assets/dashboard-rounded.png';
 import seatimage from '../../assets/mdi_seat.png';
 import vector from '../../assets/Vector.png';
-import vector1 from '../../assets/vector1.png'
+import vector1 from '../../assets/Vector1.png'
 import {Link} from 'react-router';
 
 const Sidebar = () => {
