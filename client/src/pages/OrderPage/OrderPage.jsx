@@ -19,7 +19,7 @@ const OrderPage = () => {
       } catch (error) {
         console.error("Error fetching orders:", error);
       } finally {
-        setLoading(false); // 👈 stop loading after data is fetched or on error
+        setLoading(false); //  stop loading after data is fetched or on error
       }
     };
     fetchOrders();
