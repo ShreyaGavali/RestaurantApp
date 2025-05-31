@@ -72,7 +72,7 @@ const CheckoutPage = () => {
 
     const handleOrder = async () => {
         if (!orderType) {
-            setErrors({ orderType: "Please select Dine In or Take Away." });
+            setUserInfoError( "Please select Dine In or Take Away.");
             return;
         }
         const isValid = validateUserDetails();
@@ -80,6 +80,7 @@ const CheckoutPage = () => {
             setUserInfoError("Please add your info to continue");
             return;
         }
+        console.log(isValid)
         setUserInfoError("");
         setLoading(true);
         const orderPayload = {
@@ -233,7 +234,7 @@ const CheckoutPage = () => {
                             </p>
                             {userInfoError &&
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px" }}>
-                                    <i class="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
+                                    <i className="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
                                     <p className="error-banner">{userInfoError}</p>
                                 </div>
                             }
@@ -249,7 +250,7 @@ const CheckoutPage = () => {
                             <input type="text" placeholder='Name' className="modal-input" value={name} onChange={(e) => setName(e.target.value)} />
                             {errors.name &&
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "5px", background: "#ffe6e6", width: "80%", marginLeft: "25px", marginBottom: "5px" }}>
-                                    <i class="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
+                                    <i className="fa-solid fa-circle-exclamation" style={{ color: "red" }}></i>
                                     <p className="error-banner">{errors.name}</p>
 
                                 </div>
@@ -279,10 +280,10 @@ const CheckoutPage = () => {
                         </div>
                     </div>
                 )}
-                {/* <div className="order-btn" onClick={handleOrder} {...handlers}>
+                 {/* <div className="order-btn" onClick={handleOrder} {...handlers}>
                     <i className="fa-solid fa-arrow-right"></i>
                     <p>Swipe to Order</p>
-                </div> */}
+                </div>  */}
                 <div
                     className={`order-btn ${loading ? 'disabled' : ''}`}
                     onClick={!loading ? handleOrder : null}
