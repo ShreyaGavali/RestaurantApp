@@ -14,10 +14,10 @@ const OrderLineCard = ({ order, orderNumber }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = new Date();
-      const orderTime = new Date(order.timestamp);
+      const now = new Date(new Date().toUTCString());
+      const orderTime = new Date(new Date(order.timestamp).toUTCString());
       const diffInMin = Math.floor((now - orderTime) / 60000);
-      const timeLeft = 20 - diffInMin;
+      const timeLeft = Math.max(0, Math.min(20, 20 - diffInMin));
 
       setRemainingTime(timeLeft > 0 ? timeLeft : 0);
 
