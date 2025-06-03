@@ -100,7 +100,7 @@ export const updateOrderStatus = async (req, res) => {
     // If order is complete, release table and reduce chef's load
     if (["Done", "Served", "Not Picked Up"].includes(status)) {
       if (order.assignedChef &&
-        !["Done", "Served", "Not Picked Up"].includes(order.status)
+        ["Served", "Not Picked Up"].includes(order.status)
       ) {
         await Chef.findByIdAndUpdate(order.assignedChef, { $inc: { ordersTaken: -1 } });
       }

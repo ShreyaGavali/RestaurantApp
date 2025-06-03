@@ -12,7 +12,7 @@ import chefRoutes from "./routes/chefRoutes.js";
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://restaurant-app-fqcy.vercel.app'], // Add both local and deployed frontends
+  origin: ['http://localhost:5173', 'https://restaurant-app-fqcy.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
