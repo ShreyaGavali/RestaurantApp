@@ -25,7 +25,7 @@ Features Implemented
         For Takeaway: Name, phone number, and address.
         After entering the details, the user can place the order.
     - When an order is placed:
-        The system searches for a table with status "available", stores the table ID in the database with the order, and changes the table status to "reserved".
+        If the order type is dine in, the system looks for a table that is available, saves the table ID with the order in the database, and changes the table status to reserved.
         The chef with the fewest active orders is assigned the new order, and the chef’s ID is stored in the order document.
         All orders are visible on the Orders page. After placing an order, it will appear in the "Ongoing" state for 20 minutes. After 20 minutes:
         The order status changes to "Done".
